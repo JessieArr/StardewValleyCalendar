@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - StardewValleyCalendar</title>
+    <title>@ViewData["Title"] - Stardew Valley Calendar</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,13 +26,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">StardewValleyCalendar</a>
+                <a asp-page="/Index" class="navbar-brand">Stardew Valley Calendar</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    <li><a href="https://stardewvalleywiki.com" target="_blank">Wiki</a></li>
                 </ul>
             </div>
         </div>
@@ -40,11 +39,11 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - StardewValleyCalendar</p>
+            <p>&copy; 2019 - Stardew Valley Calendar</p>
         </footer>
     </div>
 

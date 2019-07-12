@@ -35,3 +35,46 @@ body {
         display: none;
     }
 }
+
+.calendar{
+    border: 2px solid black;
+    padding: 0px;
+}
+
+.calendar-day {
+    border: 1px solid black;
+    width: 14%;
+    display: inline-block;
+    height: 120px;
+    float: left;
+}
+
+.week-day {
+    border: 1px solid black;
+    width: 14%;
+    display: inline-block;
+    height: 200px;
+    float: left;
+}
+
+.time-of-day {
+    border: 1px solid black;
+    width: 100%;
+    display: inline-block;
+}
+
+.full-height{
+    height: 100%;
+}
+
+.no-margin{
+    margin: 0px;
+}
+
+.opens {
+    color: darkgreen;
+}
+
+.closes {
+    color: darkred;
+}
