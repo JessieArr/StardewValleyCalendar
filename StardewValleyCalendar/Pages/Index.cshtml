@@ -8,7 +8,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-8">
         <div class="row">
-            <div class="col-md-12 calendar" style="padding: 0px;">
+            <div class="col-md-12 calendar calendar-background" style="padding: 0px;">
                 <h3>Weekly</h3>
                 <div style="display:block;">
                     @foreach (var day in Model.DaysOfTheWeek)
@@ -51,12 +51,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 calendar">
+            <div class="col-md-12 calendar calendar-background">
                 <h3>Spring</h3>
                 @foreach (var day in Model.Days)
                 {
                 <div class="calendar-day">
-                    <h4>@day</h4>
+                    <h3 class="pull-right small-margin">@day</h3>
                     @if (Model.CalendarDays.Any(x => x.DayOfMonth == day))
                     {
                         var dayInfo = Model.CalendarDays.First(x => x.DayOfMonth == day);
@@ -87,31 +87,91 @@
                         if (dayInfo.FirstDayToPlant.Any())
                         {
                             var crops = dayInfo.FirstDayToPlant.Select(x => x.Link.Text);
-                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                            <p class="no-margin text-success" 
+                               title="Plant these crops on of before today for an optimal number of harvests if not using Speed Gro OR Agriculturalist">
+                                0%: @String.Join(", ", crops)
+                            </p>
                         }
 
                         if (dayInfo.FirstDayToPlantTen.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTen.Select(x => x.Link.Text);
-                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                            <p class="no-margin text-success" 
+                               title="Plant these crops on of before today for an optimal number of harvests if using Speed Gro OR Agriculturalist">
+                                10%: @String.Join(", ", crops)
+                            </p>
                         }
 
                         if (dayInfo.FirstDayToPlantTwenty.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTwenty.Select(x => x.Link.Text);
-                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                            <p class="no-margin text-success" 
+                               title="Plant these crops on of before today for an optimal number of harvests if using Speed Gro and Agriculturalist">
+                                20%: @String.Join(", ", crops)
+                            </p>
                         }
 
                         if (dayInfo.FirstDayToPlantTwentyFive.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTwentyFive.Select(x => x.Link.Text);
-                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                            <p class="no-margin text-success" 
+                               title="Plant these crops on of before today for an optimal number of harvests if using Deluxe Speed Gro">
+                                25%: @String.Join(", ", crops)
+                            </p>
                         }
 
                         if (dayInfo.FirstDayToPlantThirtyFive.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantThirtyFive.Select(x => x.Link.Text);
-                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                            <p class="no-margin text-success" 
+                               title="Plant these crops on of before today for an optimal number of harvests if using Deluxe Speed Gro and Agriculturalist">
+                                35%: @String.Join(", ", crops)
+                            </p>
+                        }
+
+                        if (dayInfo.LastDayToPlant.Any())
+                        {
+                            var crops = dayInfo.LastDayToPlant.Select(x => x.Link.Text);
+                            <p class="no-margin text-success" 
+                               title="Last chance for a harvest if not using Speed Gro OR Agriculturalist">
+                                0%: @String.Join(", ", crops)
+                            </p>
+                        }
+
+                        if (dayInfo.LastDayToPlantTen.Any())
+                        {
+                            var crops = dayInfo.LastDayToPlantTen.Select(x => x.Link.Text);
+                            <p class="no-margin text-success" 
+                               title="Last chance for a harvest if using Speed Gro OR Agriculturalist">
+                                10%: @String.Join(", ", crops)
+                            </p>
+                        }
+
+                        if (dayInfo.LastDayToPlantTwenty.Any())
+                        {
+                            var crops = dayInfo.LastDayToPlantTwenty.Select(x => x.Link.Text);
+                            <p class="no-margin text-success" 
+                               title="Last chance for a harvest if using Speed Gro and Agriculturalist">
+                                20%: @String.Join(", ", crops)
+                            </p>
+                        }
+
+                        if (dayInfo.LastDayToPlantTwentyFive.Any())
+                        {
+                            var crops = dayInfo.LastDayToPlantTwentyFive.Select(x => x.Link.Text);
+                            <p class="no-margin text-success" 
+                               title="Last chance for a harvest if using Deluxe Speed Gro">
+                                25%: @String.Join(", ", crops)
+                            </p>
+                        }
+
+                        if (dayInfo.LastDayToPlantThirtyFive.Any())
+                        {
+                            var crops = dayInfo.LastDayToPlantThirtyFive.Select(x => x.Link.Text);
+                            <p class="no-margin text-success" 
+                               title="Last chance for a harvest if using Deluxe Speed Gro and Agriculturalist">
+                                35%: @String.Join(", ", crops)
+                            </p>
                         }
                     }
                 </div>
@@ -119,7 +179,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 calendar-background">
         <h3>Daily</h3>
         @foreach (var time in Model.TimesOfDay)
         {

@@ -278,6 +278,13 @@ namespace StardewValleyCalendar.Services
                 days[(int)crop.CalculatedValues.FirstDayToPlant.SpeedGroAndAgriculturalist].FirstDayToPlantTwenty.Add(crop);
                 days[(int)crop.CalculatedValues.FirstDayToPlant.Deluxe].FirstDayToPlantTwentyFive.Add(crop);
                 days[(int)crop.CalculatedValues.FirstDayToPlant.DeluxeAndAgriculturalist].FirstDayToPlantThirtyFive.Add(crop);
+
+                days[(int)crop.CalculatedValues.LastDayToPlant.Normal].LastDayToPlant.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.SpeedGroOrAgriculturalist].LastDayToPlantTen.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.SpeedGroAndAgriculturalist].LastDayToPlantTwenty.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.Deluxe].LastDayToPlantTwentyFive.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.DeluxeAndAgriculturalist].LastDayToPlantThirtyFive.Add(crop);
+
             }
 
             CalendarDays = days.Select(x => x.Value).ToList();
