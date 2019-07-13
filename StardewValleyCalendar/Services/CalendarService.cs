@@ -241,34 +241,46 @@ namespace StardewValleyCalendar.Services
 
         private void InitializeCalendarDays()
         {
-            CalendarDays.Add(new SVCalendarDay()
+            var days = new Dictionary<int, SVCalendarDay>();
+            for(var i = 1; i < 29; i++)
             {
-                DayOfMonth = 4,
-                Birthday = new SVWikiLink("Kent", "https://stardewvalleywiki.com/Kent"),
-                Notes = new List<string>() { },
-            });
-            CalendarDays.Add(new SVCalendarDay()
-            {
-                DayOfMonth = 13,
-                Festival = new SVWikiLink("Egg Festival", "https://stardewvalleywiki.com/Egg_Festival"),
-                Notes = new List<string>() {
-                    "Strawberry seeds are only sold at the Egg Festival"
-                },
-            });
-            CalendarDays.Add(new SVCalendarDay()
-            {
-                DayOfMonth = 24,
-                Festival = new SVWikiLink("Flower Dance", "https://stardewvalleywiki.com/Flower_Dance"),
-                Notes = new List<string>() { },
-            });
-            CalendarDays.Add(new SVCalendarDay()
-            {
-                DayOfMonth = 25,
-                Notes = new List<string>()
+                days.Add(i, new SVCalendarDay()
                 {
-                    "Pam's doctor appointment - Bus doesn't run"
-                }
-            });
+                    DayOfMonth = i,
+                });
+            }
+
+            days[4].Birthday = People.Kent;
+            days[7].Birthday = People.Lewis;
+            days[10].Birthday = People.Vincent;
+            days[14].Birthday = People.Haley;
+            days[18].Birthday = People.Pam;
+            days[20].Birthday = People.Shane;
+            days[26].Birthday = People.Pierre;
+            days[27].Birthday = People.Emily;
+
+            days[13].Festival = new SVWikiLink("Egg Festival", "https://stardewvalleywiki.com/Egg_Festival");
+            days[24].Festival = new SVWikiLink("Flower Dance", "https://stardewvalleywiki.com/Flower_Dance");
+
+            days[13].Notes.Add("Strawberry seeds are only sold at the Egg Festival");
+            days[15].Notes.Add("Salmonberry season");
+            days[16].Notes.Add("Salmonberry season");
+            days[17].Notes.Add("Salmonberry season");
+            days[18].Notes.Add("Salmonberry season");
+            days[25].Notes.Add("Pam's doctor appointment - Bus doesn't run");
+
+            var crops = Crops.GetSpringCrops();
+
+            foreach(var crop in crops)
+            {
+                days[(int)crop.CalculatedValues.FirstDayToPlant.Normal].FirstDayToPlant.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.SpeedGroOrAgriculturalist].FirstDayToPlantTen.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.SpeedGroAndAgriculturalist].FirstDayToPlantTwenty.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.Deluxe].FirstDayToPlantTwentyFive.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.DeluxeAndAgriculturalist].FirstDayToPlantThirtyFive.Add(crop);
+            }
+
+            CalendarDays = days.Select(x => x.Value).ToList();
         }
     }
 }

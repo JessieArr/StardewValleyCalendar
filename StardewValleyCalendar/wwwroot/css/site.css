@@ -36,8 +36,9 @@ body {
     }
 }
 
-.calendar{
+.calendar {
     border: 2px solid black;
+    background-color: #fbebc2;
     padding: 0px;
 }
 
@@ -67,8 +68,12 @@ body {
     height: 100%;
 }
 
-.no-margin{
+.no-margin {
     margin: 0px;
+}
+
+.small-margin {
+    margin: 3px;
 }
 
 .opens {

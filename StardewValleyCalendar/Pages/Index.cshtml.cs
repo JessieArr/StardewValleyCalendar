@@ -19,6 +19,8 @@ namespace StardewValleyCalendar.Pages
         public List<SVCalendarDay> CalendarDays;
         public SVWikiLink TravelingCart;
 
+        public List<SVCrop> CropsInSeason;
+
         public IndexModel()
         {
             _CalendarService = new CalendarService();

@@ -55,33 +55,66 @@
                 <h3>Spring</h3>
                 @foreach (var day in Model.Days)
                 {
-                    <div class="calendar-day">
-                        <h4>@day</h4>
-                        @if (Model.CalendarDays.Any(x => x.DayOfMonth == day))
+                <div class="calendar-day">
+                    <h4>@day</h4>
+                    @if (Model.CalendarDays.Any(x => x.DayOfMonth == day))
+                    {
+                        var dayInfo = Model.CalendarDays.First(x => x.DayOfMonth == day);
+
+                        if (dayInfo.Festival != null)
                         {
-                            var dayInfo = Model.CalendarDays.First(x => x.DayOfMonth == day);
+                            <div>
+                                <img src="~/images/Calendar_Flag_Anim.gif" class="small-margin" />
+                                <a href="@dayInfo.Festival.URL" target="_blank">@dayInfo.Festival.Text</a>
+                            </div>
+                        }
+                        if (dayInfo.Birthday != null)
+                        {
+                            <p>
+                                <img src="@dayInfo.Birthday.IconURL" />
+                                <a href="@dayInfo.Birthday.Link.URL" target="_blank">@dayInfo.Birthday.Link.Text</a>'s Birthday
+                            </p>
+                        }
 
-                            if (dayInfo.Festival != null)
+                        if (dayInfo.Notes.Any())
+                        {
+                            @foreach (var note in dayInfo.Notes)
                             {
-                                <div>
-                                    <img src="~/images/Calendar_Flag_Anim.gif" />
-                                    <a href="@dayInfo.Festival.URL" target="_blank">@dayInfo.Festival.Text</a>
-                                </div>
-                            }
-                            if (dayInfo.Birthday != null)
-                            {
-                                <p><a href="@dayInfo.Birthday.URL" target="_blank">@dayInfo.Birthday.Text</a>'s Birthday</p>
-                            }
-
-                            if (dayInfo.Notes.Any())
-                            {
-                                @foreach (var note in dayInfo.Notes)
-                                {
-                                    <b class="no-margin text-warning">@note</b>
-                                }
+                                <b class="no-margin text-warning">@note</b>
                             }
                         }
-                    </div>
+
+                        if (dayInfo.FirstDayToPlant.Any())
+                        {
+                            var crops = dayInfo.FirstDayToPlant.Select(x => x.Link.Text);
+                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                        }
+
+                        if (dayInfo.FirstDayToPlantTen.Any())
+                        {
+                            var crops = dayInfo.FirstDayToPlantTen.Select(x => x.Link.Text);
+                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                        }
+
+                        if (dayInfo.FirstDayToPlantTwenty.Any())
+                        {
+                            var crops = dayInfo.FirstDayToPlantTwenty.Select(x => x.Link.Text);
+                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                        }
+
+                        if (dayInfo.FirstDayToPlantTwentyFive.Any())
+                        {
+                            var crops = dayInfo.FirstDayToPlantTwentyFive.Select(x => x.Link.Text);
+                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                        }
+
+                        if (dayInfo.FirstDayToPlantThirtyFive.Any())
+                        {
+                            var crops = dayInfo.FirstDayToPlantThirtyFive.Select(x => x.Link.Text);
+                            <b class="no-margin text-success">Last day to plant @String.Join(", ", crops) optimally.</b>
+                        }
+                    }
+                </div>
                 }
             </div>
         </div>
