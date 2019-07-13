@@ -77,5 +77,41 @@ namespace StardewValleyCalendar.Test
             Assert.Equal(6, Crops.Potato.CalculatedValues.GoldPerDay.Deluxe);
             Assert.Equal(7.5, Crops.Potato.CalculatedValues.GoldPerDay.DeluxeAndAgriculturalist);
         }
+
+        [Fact]
+        public void GreenBeans()
+        {
+            Assert.Equal(27, Crops.GreenBean.CalculatedValues.GrowingDays);
+
+            Assert.Equal(6, Crops.GreenBean.CalculatedValues.MaxHarvests.Normal);
+            Assert.Equal(7, Crops.GreenBean.CalculatedValues.MaxHarvests.SpeedGroOrAgriculturalist);
+            Assert.Equal(7, Crops.GreenBean.CalculatedValues.MaxHarvests.SpeedGroAndAgriculturalist);
+            Assert.Equal(7, Crops.GreenBean.CalculatedValues.MaxHarvests.Deluxe);
+            Assert.Equal(7, Crops.GreenBean.CalculatedValues.MaxHarvests.DeluxeAndAgriculturalist);
+
+            Assert.Equal(25, Crops.GreenBean.CalculatedValues.DaysNeededForAllHarvests.Normal);
+            Assert.Equal(27, Crops.GreenBean.CalculatedValues.DaysNeededForAllHarvests.SpeedGroOrAgriculturalist);
+            Assert.Equal(26, Crops.GreenBean.CalculatedValues.DaysNeededForAllHarvests.SpeedGroAndAgriculturalist);
+            Assert.Equal(26, Crops.GreenBean.CalculatedValues.DaysNeededForAllHarvests.Deluxe);
+            Assert.Equal(25, Crops.GreenBean.CalculatedValues.DaysNeededForAllHarvests.DeluxeAndAgriculturalist);
+
+            Assert.Equal(4, Crops.GreenBean.CalculatedValues.FirstDayToPlant.Normal);
+            Assert.Equal(4, Crops.GreenBean.CalculatedValues.FirstDayToPlant.SpeedGroOrAgriculturalist);
+            Assert.Equal(3, Crops.GreenBean.CalculatedValues.FirstDayToPlant.SpeedGroAndAgriculturalist);
+            Assert.Equal(3, Crops.GreenBean.CalculatedValues.FirstDayToPlant.Deluxe);
+            Assert.Equal(4, Crops.GreenBean.CalculatedValues.FirstDayToPlant.DeluxeAndAgriculturalist);
+
+            Assert.Equal(22, Crops.GreenBean.CalculatedValues.LastDayToPlant.Normal);
+            Assert.Equal(22, Crops.GreenBean.CalculatedValues.LastDayToPlant.SpeedGroOrAgriculturalist);
+            Assert.Equal(23, Crops.GreenBean.CalculatedValues.LastDayToPlant.SpeedGroAndAgriculturalist);
+            Assert.Equal(23, Crops.GreenBean.CalculatedValues.LastDayToPlant.Deluxe);
+            Assert.Equal(24, Crops.GreenBean.CalculatedValues.LastDayToPlant.DeluxeAndAgriculturalist);
+
+            Assert.Equal(5, Crops.GreenBean.CalculatedValues.GoldPerDay.Normal);
+            Assert.Equal(5, Crops.GreenBean.CalculatedValues.GoldPerDay.SpeedGroOrAgriculturalist);
+            Assert.Equal(6, Crops.GreenBean.CalculatedValues.GoldPerDay.SpeedGroAndAgriculturalist);
+            Assert.Equal(6, Crops.GreenBean.CalculatedValues.GoldPerDay.Deluxe);
+            Assert.Equal(7.5, Crops.GreenBean.CalculatedValues.GoldPerDay.DeluxeAndAgriculturalist);
+        }
     }
 }

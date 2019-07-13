@@ -17,6 +17,7 @@ namespace StardewValleyCalendar.Models
         public static SVWikiLink JojaMart = new SVWikiLink("JojaMart", "https://stardewvalleywiki.com/JojaMart");
         public static SVWikiLink MarniesRanch = new SVWikiLink("Marnie's Ranch", "https://stardewvalleywiki.com/Marnie%27s_Ranch");
         public static SVWikiLink Museum = new SVWikiLink("Museum", "https://stardewvalleywiki.com/Museum");
+        public static SVWikiLink Oasis = new SVWikiLink("Oasis", "https://stardewvalleywiki.com/Oasis");
         public static SVWikiLink Saloon = new SVWikiLink("Saloon", "https://stardewvalleywiki.com/The_Stardrop_Saloon");
         public static SVWikiLink TravelingCart = new SVWikiLink("Traveling Cart", "https://stardewvalleywiki.com/Traveling_Cart");
         public static SVWikiLink WizardsTower = new SVWikiLink("Wizard's Tower", "https://stardewvalleywiki.com/Wizard%27s_Tower");

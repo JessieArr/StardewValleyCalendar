@@ -70,7 +70,7 @@
                         }
                         if (dayInfo.Birthday != null)
                         {
-                            <p>
+                            <p class="small-margin">
                                 <img src="@dayInfo.Birthday.IconURL" />
                                 <a href="@dayInfo.Birthday.Link.URL" target="_blank">@dayInfo.Birthday.Link.Text</a>'s Birthday
                             </p>
@@ -132,7 +132,7 @@
                         if (dayInfo.LastDayToPlant.Any())
                         {
                             var crops = dayInfo.LastDayToPlant.Select(x => x.Link.Text);
-                            <p class="no-margin text-success" 
+                            <p class="no-margin text-danger" 
                                title="Last chance for a harvest if not using Speed Gro OR Agriculturalist">
                                 0%: @String.Join(", ", crops)
                             </p>
@@ -141,7 +141,7 @@
                         if (dayInfo.LastDayToPlantTen.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTen.Select(x => x.Link.Text);
-                            <p class="no-margin text-success" 
+                            <p class="no-margin text-danger" 
                                title="Last chance for a harvest if using Speed Gro OR Agriculturalist">
                                 10%: @String.Join(", ", crops)
                             </p>
@@ -150,7 +150,7 @@
                         if (dayInfo.LastDayToPlantTwenty.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTwenty.Select(x => x.Link.Text);
-                            <p class="no-margin text-success" 
+                            <p class="no-margin text-danger" 
                                title="Last chance for a harvest if using Speed Gro and Agriculturalist">
                                 20%: @String.Join(", ", crops)
                             </p>
@@ -159,7 +159,7 @@
                         if (dayInfo.LastDayToPlantTwentyFive.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTwentyFive.Select(x => x.Link.Text);
-                            <p class="no-margin text-success" 
+                            <p class="no-margin text-danger" 
                                title="Last chance for a harvest if using Deluxe Speed Gro">
                                 25%: @String.Join(", ", crops)
                             </p>
@@ -168,7 +168,7 @@
                         if (dayInfo.LastDayToPlantThirtyFive.Any())
                         {
                             var crops = dayInfo.LastDayToPlantThirtyFive.Select(x => x.Link.Text);
-                            <p class="no-margin text-success" 
+                            <p class="no-margin text-danger" 
                                title="Last chance for a harvest if using Deluxe Speed Gro and Agriculturalist">
                                 35%: @String.Join(", ", crops)
                             </p>
@@ -209,6 +209,52 @@
         }
     </div>
     <div class="col-md-1"></div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 calendar-background">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Crop</th>
+                    <th>Seed Price</th>
+                    <th>Sell Price</th>
+                    <th>Harvests:</th>
+                    <th>10%:</th>
+                    <th>20%:</th>
+                    <th>25%:</th>
+                    <th>35%:</th>
+                    <th>Gold per day:</th>
+                    <th>10%:</th>
+                    <th>20%:</th>
+                    <th>25%:</th>
+                    <th>35%:</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var crop in Model.CropsInSeason)
+                {
+                <tr>
+                    <td>@crop.Link.Text</td>
+                    <td>@crop.SeedPrice</td>
+                    <td>@crop.SellPrice</td>
+                    <td>@crop.CalculatedValues.MaxHarvests.Normal</td>
+                    <td>@crop.CalculatedValues.MaxHarvests.SpeedGroOrAgriculturalist</td>
+                    <td>@crop.CalculatedValues.MaxHarvests.SpeedGroAndAgriculturalist</td>
+                    <td>@crop.CalculatedValues.MaxHarvests.Deluxe</td>
+                    <td>@crop.CalculatedValues.MaxHarvests.DeluxeAndAgriculturalist</td>
+                    <td>@Math.Round(crop.CalculatedValues.GoldPerDay.Normal, 2)</td>
+                    <td>@Math.Round(crop.CalculatedValues.GoldPerDay.SpeedGroOrAgriculturalist, 2)</td>
+                    <td>@Math.Round(crop.CalculatedValues.GoldPerDay.SpeedGroAndAgriculturalist, 2)</td>
+                    <td>@Math.Round(crop.CalculatedValues.GoldPerDay.Deluxe, 2)</td>
+                    <td>@Math.Round(crop.CalculatedValues.GoldPerDay.DeluxeAndAgriculturalist, 2)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+    
 </div>
 
 

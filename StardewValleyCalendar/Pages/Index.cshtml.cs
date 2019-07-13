@@ -28,6 +28,7 @@ namespace StardewValleyCalendar.Pages
             DaysOfTheWeek = _CalendarService.GetDaysOfWeek();
             TimesOfDay = _CalendarService.GetTimesOfDay();
             CalendarDays = _CalendarService.GetCalendarDays();
+            CropsInSeason = Crops.GetSpringCrops();
         }
 
         public void OnGet()

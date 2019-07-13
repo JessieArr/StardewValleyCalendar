@@ -139,7 +139,8 @@ namespace StardewValleyCalendar.Services
                     Shops.GeneralStore,
                     Shops.FishShop,
                     Shops.JojaMart,
-                    Shops.MarniesRanch
+                    Shops.MarniesRanch,
+                    Shops.Oasis,
                 },
                 StoresClosingAtTime = new List<SVWikiLink>(),
             });
@@ -235,6 +236,7 @@ namespace StardewValleyCalendar.Services
                 StoresClosingAtTime = new List<SVWikiLink>()
                 {
                     Shops.Saloon,
+                    Shops.Oasis
                 },
             });
         }
