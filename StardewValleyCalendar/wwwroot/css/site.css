@@ -48,9 +48,9 @@ body {
 
 .calendar-day {
     border: 1px solid black;
-    width: 14%;
     display: inline-block;
     height: 160px;
+    width: 180px;
     float: left;
 }
 
@@ -58,7 +58,8 @@ body {
     border: 1px solid black;
     width: 14%;
     display: inline-block;
-    height: 130px;
+    height: 150px;
+    width: 180px;
     float: left;
 }
 

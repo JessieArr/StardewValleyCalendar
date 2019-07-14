@@ -10,50 +10,62 @@
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12 calendar calendar-background" style="padding: 0px;">
-                <h3>Weekly</h3>
+                <h3 class="small-margin">Weekly</h3>
                 <div style="display:block;">
                     @foreach (var day in Model.DaysOfTheWeek)
                     {
-                        <div class="week-day">
-                            <b class="small-margin">@day.Name</b>
-                            @if (day.ClosedStores.Any())
+                    <div class="week-day">
+                        <b class="small-margin">@day.Name</b>
+                        @if (day.ClosedStores.Any())
+                        {
+                            @foreach (var store in day.ClosedStores)
                             {
-                                @foreach (var store in day.ClosedStores)
-                                {
-                                    <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed</p>
-                                }
+                                <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed</p>
                             }
-                            @if (day.ClosedStoresAfterCommunityCenter.Any())
+                        }
+                        @if (day.ClosedStoresAfterCommunityCenter.Any())
+                        {
+                            @foreach (var store in day.ClosedStoresAfterCommunityCenter)
                             {
-                                @foreach (var store in day.ClosedStoresAfterCommunityCenter)
-                                {
-                                    <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed after Community Center restored</p>
-                                }
+                                <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed after Community Center restored</p>
                             }
-                            @if (day.ClosedStoresOnSunnyDays.Any())
+                        }
+                        @if (day.ClosedStoresOnSunnyDays.Any())
+                        {
+                            @foreach (var store in day.ClosedStoresOnSunnyDays)
                             {
-                                @foreach (var store in day.ClosedStoresOnSunnyDays)
-                                {
-                                    <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed if Sunny</p>
-                                }
+                                <p class="small-margin"><a href="@store.URL" target="_blank">@store.Text</a> Closed if Sunny</p>
                             }
-                            @if (day.EarlyStoreClosures.Any())
-                            {
-                                @foreach (var store in day.EarlyStoreClosures)
-                                {
-                                    <p class="small-margin">
-                                        <a href="@store.Item1.URL" target="_blank">@store.Item1.Text</a> closes at @store.Item2
-                                    </p>
-                                }
-                            }
-                            @if (day.TravelingCartOpen)
+                        }
+                        @if (day.EarlyStoreClosures.Any())
+                        {
+                            @foreach (var store in day.EarlyStoreClosures)
                             {
                                 <p class="small-margin">
-                                    <a href="@Model.TravelingCart.URL" target="_blank">@Model.TravelingCart.Text</a>
-                                    available
+                                    <a href="@store.Item1.URL" target="_blank">@store.Item1.Text</a> closes at @store.Item2
                                 </p>
                             }
-                        </div>
+                        }
+                        @if (day.TravelingCartOpen)
+                        {
+                            <p class="small-margin">
+                                <a href="@Model.TravelingCart.URL" target="_blank">@Model.TravelingCart.Text</a>
+                                available
+                            </p>
+                        }
+                        @if (day.QueenOfSauceRerun)
+                        {
+                            <p class="small-margin">
+                                <a href="https://stardewvalleywiki.com/The_Queen_of_Sauce" target="_blank">Queen of Sauce</a> rerun
+                            </p>
+                        }
+                        @if (day.QueenOfSauceNewRecipe)
+                        {
+                            <p class="small-margin">
+                                <a href="https://stardewvalleywiki.com/The_Queen_of_Sauce" target="_blank">Queen of Sauce</a> new recipe
+                            </p>
+                        }
+                    </div>
                     }
                 </div>
             </div>

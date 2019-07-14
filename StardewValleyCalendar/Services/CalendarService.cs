@@ -123,6 +123,7 @@ namespace StardewValleyCalendar.Services
                 {
                     Shops.GeneralStore
                 },
+                QueenOfSauceRerun = true,
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
@@ -153,6 +154,7 @@ namespace StardewValleyCalendar.Services
             {
                 Name = "Sunday",
                 TravelingCartOpen = true,
+                QueenOfSauceNewRecipe = true,
             });
         }
 

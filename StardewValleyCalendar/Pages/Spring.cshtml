@@ -9,7 +9,7 @@
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12 calendar calendar-background" style="padding: 0px;">
-                <h3>Weekly</h3>
+                <h3 class="small-margin">Weekly</h3>
                 <div style="display:block;">
                     @foreach (var day in Model.DaysOfTheWeek)
                     {
@@ -50,6 +50,18 @@
                             <p class="small-margin">
                                 <a href="@Model.TravelingCart.URL" target="_blank">@Model.TravelingCart.Text</a>
                                 available
+                            </p>
+                        }
+                        @if (day.QueenOfSauceRerun)
+                        {
+                            <p class="small-margin">
+                                <a href="https://stardewvalleywiki.com/The_Queen_of_Sauce" target="_blank">Queen of Sauce</a> rerun
+                            </p>
+                        }
+                        @if (day.QueenOfSauceNewRecipe)
+                        {
+                            <p class="small-margin">
+                                <a href="https://stardewvalleywiki.com/The_Queen_of_Sauce" target="_blank">Queen of Sauce</a> new recipe
                             </p>
                         }
                     </div>
