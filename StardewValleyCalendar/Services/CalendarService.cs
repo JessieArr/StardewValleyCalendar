@@ -14,6 +14,10 @@ namespace StardewValleyCalendar.Services
         private List<SVCalendarDay> CalendarDaysForSummer{ get; set; }
         private List<SVCalendarDay> CalendarDaysForFall { get; set; }
         private List<SVCalendarDay> CalendarDaysForWinter { get; set; }
+        private List<SeasonReminder> SpringReminders { get; set; }
+        private List<SeasonReminder> SummerReminders { get; set; }
+        private List<SeasonReminder> FallReminders { get; set; }
+        private List<SeasonReminder> WinterReminders { get; set; }
 
         public CalendarService()
         {
@@ -23,12 +27,24 @@ namespace StardewValleyCalendar.Services
             CalendarDaysForSummer = new List<SVCalendarDay>();
             CalendarDaysForFall = new List<SVCalendarDay>();
             CalendarDaysForWinter = new List<SVCalendarDay>();
+
+            SpringReminders = new List<SeasonReminder>();
+            SummerReminders = new List<SeasonReminder>();
+            FallReminders = new List<SeasonReminder>();
+            WinterReminders = new List<SeasonReminder>();
+
             InitializeDaysOfTheWeek();
             InitializeTimesOfDay();
+
             InitializeCalendarDaysForSpring();
             InitializeCalendarDaysForSummer();
             InitializeCalendarDaysForFall();
             InitializeCalendarDaysForWinter();
+
+            InitializeRemindersForSpring();
+            InitializeRemindersForSummer();
+            InitializeRemindersForFall();
+            InitializeRemindersForWinter();
         }
 
         public List<SVDayOfWeek> GetDaysOfWeek()
@@ -59,6 +75,26 @@ namespace StardewValleyCalendar.Services
         public List<SVCalendarDay> GetCalendarDaysForWinter()
         {
             return CalendarDaysForWinter;
+        }
+
+        public List<SeasonReminder> GetRemindersForSpring()
+        {
+            return SpringReminders;
+        }
+
+        public List<SeasonReminder> GetRemindersForSummer()
+        {
+            return SummerReminders;
+        }
+
+        public List<SeasonReminder> GetRemindersForFall()
+        {
+            return FallReminders;
+        }
+
+        public List<SeasonReminder> GetRemindersForWinter()
+        {
+            return WinterReminders;
         }
 
         private void InitializeDaysOfTheWeek()
@@ -434,6 +470,152 @@ namespace StardewValleyCalendar.Services
             days[17].Notes.Add("Submarine Ride has unique fish");
 
             CalendarDaysForWinter = days.Select(x => x.Value).ToList();
+        }
+
+        private void InitializeRemindersForSpring()
+        {
+            SpringReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Morel",
+                Bundle = Bundles.ExoticForagingBundle
+            });
+            SpringReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "5x Gold Quality Parsnip",
+                Bundle = Bundles.QualityCropsBundle
+            });
+            SpringReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Catfish",
+                Bundle = Bundles.RiverFishBundle
+            });
+            SpringReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Sardine",
+                Bundle = Bundles.OceanFishBundle
+            });
+            SpringReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Eel",
+                Bundle = Bundles.NightFishingBundle
+            });
+        }
+
+        private void InitializeRemindersForSummer()
+        {
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Sunfish",
+                Bundle = Bundles.RiverFishBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Sturgeon",
+                Bundle = Bundles.LakeFishBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Tuna",
+                Bundle = Bundles.OceanFishBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Pufferfish",
+                Bundle = Bundles.SpecialtyFishBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Poppy",
+                Bundle = Bundles.ChefsBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Fiddlehead Fern",
+                Bundle = Bundles.ChefsBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Red Cabbage",
+                Bundle = Bundles.DyeBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Apple x3",
+                Bundle = Bundles.FodderBundle
+            });
+            SummerReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Pomegranate",
+                Bundle = Bundles.EnchantersBundle
+            });
+        }
+
+        private void InitializeRemindersForFall()
+        {
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Catfish",
+                Bundle = Bundles.RiverFishBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Shad",
+                Bundle = Bundles.RiverFishBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Red Snapper",
+                Bundle = Bundles.OceanFishBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Tilapia",
+                Bundle = Bundles.OceanFishBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Walleye",
+                Bundle = Bundles.NightFishingBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Eel",
+                Bundle = Bundles.NightFishingBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Sunflower",
+                Bundle = Bundles.DyeBundle
+            });
+            FallReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Wheat x 10",
+                Bundle = Bundles.FodderBundle
+            });
+        }
+
+        private void InitializeRemindersForWinter()
+        {
+            WinterReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Tiger Trout",
+                Bundle = Bundles.RiverFishBundle
+            });
+            WinterReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Sturgeon",
+                Bundle = Bundles.LakeFishBundle
+            });
+            WinterReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Tuna",
+                Bundle = Bundles.OceanFishBundle
+            });
+            WinterReminders.Add(new SeasonReminder()
+            {
+                ItemDescription = "Nautilus Shell",
+                Bundle = Bundles.FieldResearchBundle
+            });
         }
     }
 }

@@ -291,6 +291,16 @@
                 }
             </tbody>
         </table>
+        <div>
+            <h4>Don't Forget:</h4>
+            <ul>
+                <li><a href="@Model.SeasonalForagingBundle.Link.URL" target="_blank">@Model.SeasonalForagingBundle.Link.Text</a></li>
+                @foreach (var reminder in Model.Reminders)
+                {
+                    <li>@reminder.ItemDescription needed for <a href="@reminder.Bundle.Link.URL" target="_blank">@reminder.Bundle.Link.Text</a></li>
+                }
+            </ul>
+        </div>
     </div>
     <div class="col-md-1"></div>
 
