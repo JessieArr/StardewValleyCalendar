@@ -11,6 +11,7 @@ namespace StardewValleyCalendar.Models
         public List<string> Seasons { get; set; } = new List<string>();
         public int SeedPrice { get; set; }
         public int SellPrice { get; set; }
+        public int NumberPerHarvest { get; set; } = 1;
         public CropSpeedGrid DaysToGrow { get; set; }
         public int DaysToReGrow { get; set; }
         public bool MultipleHarvests { get; set; }
@@ -62,33 +63,9 @@ namespace StardewValleyCalendar.Models
             values.MaxHarvests = CalculateMaxHarvestsWithRegrowth(crop);
 
             values.DaysNeededForAllHarvests = CalculateDaysNeededForAllHarvestsWithRegrowth(crop, values.MaxHarvests);
-
-            values.FirstDayToPlant = new CropSpeedGrid()
-            {
-                Normal = 27 - values.DaysNeededForAllHarvests.Normal + 1,
-                SpeedGroOrAgriculturalist = 27 - values.DaysNeededForAllHarvests.SpeedGroOrAgriculturalist + 1,
-                SpeedGroAndAgriculturalist = 27 - values.DaysNeededForAllHarvests.SpeedGroAndAgriculturalist + 1,
-                Deluxe = 27 - values.DaysNeededForAllHarvests.Deluxe + 1,
-                DeluxeAndAgriculturalist = 27 - values.DaysNeededForAllHarvests.DeluxeAndAgriculturalist + 1,
-            };
-
-            values.LastDayToPlant = new CropSpeedGrid()
-            {
-                Normal = 27 - crop.DaysToGrow.Normal + 1,
-                SpeedGroOrAgriculturalist = 27 - crop.DaysToGrow.SpeedGroOrAgriculturalist + 1,
-                SpeedGroAndAgriculturalist = 27 - crop.DaysToGrow.SpeedGroAndAgriculturalist + 1,
-                Deluxe = 27 - crop.DaysToGrow.Deluxe + 1,
-                DeluxeAndAgriculturalist = 27 - crop.DaysToGrow.DeluxeAndAgriculturalist + 1,
-            };
-
-            values.GoldPerDay = new CropSpeedGrid()
-            {
-                Normal = (values.MaxHarvests.Normal * crop.SellPrice - values.MaxHarvests.Normal * crop.SeedPrice) / (values.MaxHarvests.Normal * crop.DaysToGrow.Normal),
-                SpeedGroOrAgriculturalist = (values.MaxHarvests.SpeedGroOrAgriculturalist * crop.SellPrice - values.MaxHarvests.SpeedGroOrAgriculturalist * crop.SeedPrice) / (values.MaxHarvests.SpeedGroOrAgriculturalist * crop.DaysToGrow.SpeedGroOrAgriculturalist),
-                SpeedGroAndAgriculturalist = (values.MaxHarvests.SpeedGroAndAgriculturalist * crop.SellPrice - values.MaxHarvests.SpeedGroAndAgriculturalist * crop.SeedPrice) / (values.MaxHarvests.SpeedGroAndAgriculturalist * crop.DaysToGrow.SpeedGroAndAgriculturalist),
-                Deluxe = (values.MaxHarvests.Deluxe * crop.SellPrice - values.MaxHarvests.Deluxe * crop.SeedPrice) / (values.MaxHarvests.Deluxe * crop.DaysToGrow.Deluxe),
-                DeluxeAndAgriculturalist = (values.MaxHarvests.DeluxeAndAgriculturalist * crop.SellPrice - values.MaxHarvests.DeluxeAndAgriculturalist * crop.SeedPrice) / (values.MaxHarvests.DeluxeAndAgriculturalist * crop.DaysToGrow.DeluxeAndAgriculturalist),
-            };
+            values.FirstDayToPlant = CalculateFirstDayToPlant(crop, values.DaysNeededForAllHarvests);
+            values.LastDayToPlant = CalculateLastDayToPlant(crop);
+            values.GoldPerDay = CalculateGoldPerDayWithRegrowth(crop, values.MaxHarvests);
 
             return values;
         }
@@ -125,13 +102,15 @@ namespace StardewValleyCalendar.Models
 
         public static CropSpeedGrid CalculateFirstDayToPlant(SVCrop crop, CropSpeedGrid daysNeededForAllHarvests)
         {
+            var growingDays = crop.Seasons.Count * 28 - 1;
+
             var grid = new CropSpeedGrid()
             {
-                Normal = 27 - daysNeededForAllHarvests.Normal + 1,
-                SpeedGroOrAgriculturalist = 27 - daysNeededForAllHarvests.SpeedGroOrAgriculturalist + 1,
-                SpeedGroAndAgriculturalist = 27 - daysNeededForAllHarvests.SpeedGroAndAgriculturalist + 1,
-                Deluxe = 27 - daysNeededForAllHarvests.Deluxe + 1,
-                DeluxeAndAgriculturalist = 27 - daysNeededForAllHarvests.DeluxeAndAgriculturalist + 1,
+                Normal = growingDays - daysNeededForAllHarvests.Normal + 1,
+                SpeedGroOrAgriculturalist = growingDays - daysNeededForAllHarvests.SpeedGroOrAgriculturalist + 1,
+                SpeedGroAndAgriculturalist = growingDays - daysNeededForAllHarvests.SpeedGroAndAgriculturalist + 1,
+                Deluxe = growingDays - daysNeededForAllHarvests.Deluxe + 1,
+                DeluxeAndAgriculturalist = growingDays - daysNeededForAllHarvests.DeluxeAndAgriculturalist + 1,
             };
 
             return grid;
@@ -155,11 +134,11 @@ namespace StardewValleyCalendar.Models
         {
             var grid = new CropSpeedGrid()
             {
-                Normal = (maxHarvests.Normal * crop.SellPrice - maxHarvests.Normal * crop.SeedPrice) / (maxHarvests.Normal * crop.DaysToGrow.Normal),
-                SpeedGroOrAgriculturalist = (maxHarvests.SpeedGroOrAgriculturalist * crop.SellPrice - maxHarvests.SpeedGroOrAgriculturalist * crop.SeedPrice) / (maxHarvests.SpeedGroOrAgriculturalist * crop.DaysToGrow.SpeedGroOrAgriculturalist),
-                SpeedGroAndAgriculturalist = (maxHarvests.SpeedGroAndAgriculturalist * crop.SellPrice - maxHarvests.SpeedGroAndAgriculturalist * crop.SeedPrice) / (maxHarvests.SpeedGroAndAgriculturalist * crop.DaysToGrow.SpeedGroAndAgriculturalist),
-                Deluxe = (maxHarvests.Deluxe * crop.SellPrice - maxHarvests.Deluxe * crop.SeedPrice) / (maxHarvests.Deluxe * crop.DaysToGrow.Deluxe),
-                DeluxeAndAgriculturalist = (maxHarvests.DeluxeAndAgriculturalist * crop.SellPrice - maxHarvests.DeluxeAndAgriculturalist * crop.SeedPrice) / (maxHarvests.DeluxeAndAgriculturalist * crop.DaysToGrow.DeluxeAndAgriculturalist),
+                Normal = (maxHarvests.Normal * crop.SellPrice * crop.NumberPerHarvest - maxHarvests.Normal * crop.SeedPrice) / (maxHarvests.Normal * crop.DaysToGrow.Normal),
+                SpeedGroOrAgriculturalist = (maxHarvests.SpeedGroOrAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - maxHarvests.SpeedGroOrAgriculturalist * crop.SeedPrice) / (maxHarvests.SpeedGroOrAgriculturalist * crop.DaysToGrow.SpeedGroOrAgriculturalist),
+                SpeedGroAndAgriculturalist = (maxHarvests.SpeedGroAndAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - maxHarvests.SpeedGroAndAgriculturalist * crop.SeedPrice) / (maxHarvests.SpeedGroAndAgriculturalist * crop.DaysToGrow.SpeedGroAndAgriculturalist),
+                Deluxe = (maxHarvests.Deluxe * crop.SellPrice * crop.NumberPerHarvest - maxHarvests.Deluxe * crop.SeedPrice) / (maxHarvests.Deluxe * crop.DaysToGrow.Deluxe),
+                DeluxeAndAgriculturalist = (maxHarvests.DeluxeAndAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - maxHarvests.DeluxeAndAgriculturalist * crop.SeedPrice) / (maxHarvests.DeluxeAndAgriculturalist * crop.DaysToGrow.DeluxeAndAgriculturalist),
             };
 
             return grid;
@@ -190,6 +169,25 @@ namespace StardewValleyCalendar.Models
                 SpeedGroAndAgriculturalist = crop.DaysToGrow.SpeedGroAndAgriculturalist + ((maxHarvests.SpeedGroAndAgriculturalist - 1) * crop.DaysToReGrow),
                 Deluxe = crop.DaysToGrow.Deluxe + ((maxHarvests.Deluxe - 1) * crop.DaysToReGrow),
                 DeluxeAndAgriculturalist = crop.DaysToGrow.DeluxeAndAgriculturalist + ((maxHarvests.DeluxeAndAgriculturalist - 1) * crop.DaysToReGrow),
+            };
+
+            return grid;
+        }
+
+        public static CropSpeedGrid CalculateGoldPerDayWithRegrowth(SVCrop crop, CropSpeedGrid maxHarvests)
+        {
+            var grid = new CropSpeedGrid()
+            {
+                Normal = (maxHarvests.Normal * crop.SellPrice * crop.NumberPerHarvest - crop.SeedPrice) 
+                    / ((maxHarvests.Normal - 1) * crop.DaysToReGrow + crop.DaysToGrow.Normal),
+                SpeedGroOrAgriculturalist = (maxHarvests.SpeedGroOrAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - crop.SeedPrice) 
+                    / ((maxHarvests.SpeedGroOrAgriculturalist - 1) * crop.DaysToReGrow + crop.DaysToGrow.SpeedGroOrAgriculturalist),
+                SpeedGroAndAgriculturalist = (maxHarvests.SpeedGroAndAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - crop.SeedPrice) 
+                    / ((maxHarvests.SpeedGroAndAgriculturalist - 1) * crop.DaysToReGrow + crop.DaysToGrow.SpeedGroAndAgriculturalist),
+                Deluxe = (maxHarvests.Deluxe * crop.SellPrice * crop.NumberPerHarvest - crop.SeedPrice) 
+                    / ((maxHarvests.Deluxe - 1) * crop.DaysToReGrow + crop.DaysToGrow.Deluxe),
+                DeluxeAndAgriculturalist = (maxHarvests.DeluxeAndAgriculturalist * crop.SellPrice * crop.NumberPerHarvest - crop.SeedPrice) 
+                    / ((maxHarvests.DeluxeAndAgriculturalist - 1) * crop.DaysToReGrow + crop.DaysToGrow.DeluxeAndAgriculturalist),
             };
 
             return grid;

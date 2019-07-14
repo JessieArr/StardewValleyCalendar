@@ -219,6 +219,7 @@
                     <th>Crop</th>
                     <th>Seed Price</th>
                     <th>Sell Price</th>
+                    <th>Regrows?</th>
                     <th>Harvests:</th>
                     <th>10%:</th>
                     <th>20%:</th>
@@ -238,6 +239,15 @@
                     <td>@crop.Link.Text</td>
                     <td>@crop.SeedPrice</td>
                     <td>@crop.SellPrice</td>
+                    @if (crop.MultipleHarvests)
+                    {
+                        <td>Yes</td>
+
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
                     <td>@crop.CalculatedValues.MaxHarvests.Normal</td>
                     <td>@crop.CalculatedValues.MaxHarvests.SpeedGroOrAgriculturalist</td>
                     <td>@crop.CalculatedValues.MaxHarvests.SpeedGroAndAgriculturalist</td>

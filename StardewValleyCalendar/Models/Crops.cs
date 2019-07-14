@@ -29,6 +29,7 @@ namespace StardewValleyCalendar.Models
             Seasons = new List<string>() { SeasonNames.Spring, SeasonNames.Summer },
             SeedPrice = 2500,
             SellPrice = 15,
+            NumberPerHarvest = 4,
             DaysToGrow = new CropSpeedGrid(10),
             MultipleHarvests = true,
             DaysToReGrow = 2,
@@ -108,11 +109,14 @@ namespace StardewValleyCalendar.Models
             {
                 BlueJazz,
                 Cauliflower,
+                CoffeeBean,
                 Garlic,
+                GreenBean,
                 Kale,
                 Parsnip,
                 Potato,
                 Rhubarb,
+                Strawberry,
                 Tulip,
             };
         }
