@@ -250,7 +250,7 @@ namespace StardewValleyCalendar.Models
             Seasons = new List<string>() { SeasonNames.Spring },
             SeedPrice = 100,
             SellPrice = 120,
-            DaysToGrow = new CropSpeedGrid(13),
+            DaysToGrow = new CropSpeedGrid(8),
             MultipleHarvests = true,
             DaysToReGrow = 4,
         };
