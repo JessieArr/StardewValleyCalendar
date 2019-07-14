@@ -11,33 +11,13 @@ namespace StardewValleyCalendar.Pages
 {
     public class IndexModel : PageModel
     {
-        private CalendarService _CalendarService;
-
-        public List<int> Days;
-        public List<SVDayOfWeek> DaysOfTheWeek;
-        public List<SVTimeOfDay> TimesOfDay;
-        public List<SVCalendarDay> CalendarDays;
-        public SVWikiLink TravelingCart;
-
-        public List<SVCrop> CropsInSeason;
-
         public IndexModel()
         {
-            _CalendarService = new CalendarService();
-            TravelingCart = Shops.TravelingCart;
-            DaysOfTheWeek = _CalendarService.GetDaysOfWeek();
-            TimesOfDay = _CalendarService.GetTimesOfDay();
-            CalendarDays = _CalendarService.GetCalendarDays();
-            CropsInSeason = Crops.GetSpringCrops();
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Days = new List<int>();
-            for(var i = 1; i < 29; i++)
-            {
-                Days.Add(i);
-            }
+            return RedirectToPage("Spring");
         }
     }
 }

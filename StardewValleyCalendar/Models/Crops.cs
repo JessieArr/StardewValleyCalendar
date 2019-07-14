@@ -120,5 +120,19 @@ namespace StardewValleyCalendar.Models
                 Tulip,
             };
         }
+
+        public static List<SVCrop> GetSummerCrops()
+        {
+            return new List<SVCrop>()
+            {
+            };
+        }
+
+        public static List<SVCrop> GetFallCrops()
+        {
+            return new List<SVCrop>()
+            {
+            };
+        }
     }
 }

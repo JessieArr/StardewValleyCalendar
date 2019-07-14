@@ -80,6 +80,10 @@ body {
     margin: 3px;
 }
 
+.calendar-title {
+    margin: 10px 10px 10px 10px;
+}
+
 .opens {
     color: darkgreen;
 }
