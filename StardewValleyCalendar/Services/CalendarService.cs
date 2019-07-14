@@ -27,6 +27,8 @@ namespace StardewValleyCalendar.Services
             InitializeTimesOfDay();
             InitializeCalendarDaysForSpring();
             InitializeCalendarDaysForSummer();
+            InitializeCalendarDaysForFall();
+            InitializeCalendarDaysForWinter();
         }
 
         public List<SVDayOfWeek> GetDaysOfWeek()
@@ -68,8 +70,6 @@ namespace StardewValleyCalendar.Services
                 {
                     Shops.MarniesRanch,
                 },
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
@@ -79,8 +79,6 @@ namespace StardewValleyCalendar.Services
                     Shops.CarpenterShop,
                     Shops.MarniesRanch,
                 },
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
@@ -89,21 +87,18 @@ namespace StardewValleyCalendar.Services
                 {
                     Shops.GeneralStore
                 },
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
                 Name = "Thursday",
-                ClosedStores = new List<SVWikiLink>(),
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
                 Name = "Friday",
-                ClosedStores = new List<SVWikiLink>(),
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
+                ClosedStoresAfterCommunityCenter = new List<SVWikiLink>()
+                {
+                    Shops.CarpenterShop
+                },
                 EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>()
                 {
                     new Tuple<SVWikiLink, string>(Shops.CarpenterShop, "4:00pm")
@@ -113,19 +108,14 @@ namespace StardewValleyCalendar.Services
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
                 Name = "Saturday",
-                ClosedStores = new List<SVWikiLink>(),
                 ClosedStoresOnSunnyDays = new List<SVWikiLink>()
                 {
                     Shops.FishShop
                 },
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
             });
             DaysOfTheWeek.Add(new SVDayOfWeek()
             {
                 Name = "Sunday",
-                ClosedStores = new List<SVWikiLink>(),
-                ClosedStoresOnSunnyDays = new List<SVWikiLink>(),
-                EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>() { },
                 TravelingCartOpen = true,
             });
         }
@@ -360,6 +350,90 @@ namespace StardewValleyCalendar.Services
             }
 
             CalendarDaysForSummer = days.Select(x => x.Value).ToList();
+        }
+
+        private void InitializeCalendarDaysForFall()
+        {
+            var days = new Dictionary<int, SVCalendarDay>();
+            for (var i = 1; i < 29; i++)
+            {
+                days.Add(i, new SVCalendarDay()
+                {
+                    DayOfMonth = i,
+                });
+            }
+
+            days[2].Birthday = People.Penny;
+            days[5].Birthday = People.Elliott;
+            days[11].Birthday = People.Jodi;
+            days[13].Birthday = People.Abigail;
+            days[15].Birthday = People.Sandy;
+            days[18].Birthday = People.Marnie;
+            days[21].Birthday = People.Robin;
+            days[24].Birthday = People.George;
+
+            days[16].Festival = new SVWikiLink("Stardew Valley Fair", "https://stardewvalleywiki.com/Stardew_Valley_Fair");
+            days[27].Festival = new SVWikiLink("Spirit's Eve", "https://stardewvalleywiki.com/Spirit%27s_Eve");
+
+            days[8].Notes.Add("Blackberry Season");
+            days[9].Notes.Add("Blackberry Season");
+            days[10].Notes.Add("Blackberry Season");
+            days[11].Notes.Add("Blackberry Season");
+            days[16].Notes.Add("Blacksmith closes at 10:30am");
+            days[28].Notes.Add("Reminder: Krobus' birthday is on Winter 1st");
+
+            var crops = Crops.GetFallCrops();
+
+            foreach (var crop in crops)
+            {
+                days[(int)crop.CalculatedValues.FirstDayToPlant.Normal].FirstDayToPlant.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.SpeedGroOrAgriculturalist].FirstDayToPlantTen.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.SpeedGroAndAgriculturalist].FirstDayToPlantTwenty.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.Deluxe].FirstDayToPlantTwentyFive.Add(crop);
+                days[(int)crop.CalculatedValues.FirstDayToPlant.DeluxeAndAgriculturalist].FirstDayToPlantThirtyFive.Add(crop);
+
+                days[(int)crop.CalculatedValues.LastDayToPlant.Normal].LastDayToPlant.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.SpeedGroOrAgriculturalist].LastDayToPlantTen.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.SpeedGroAndAgriculturalist].LastDayToPlantTwenty.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.Deluxe].LastDayToPlantTwentyFive.Add(crop);
+                days[(int)crop.CalculatedValues.LastDayToPlant.DeluxeAndAgriculturalist].LastDayToPlantThirtyFive.Add(crop);
+            }
+
+            CalendarDaysForFall = days.Select(x => x.Value).ToList();
+        }
+
+        private void InitializeCalendarDaysForWinter()
+        {
+            var days = new Dictionary<int, SVCalendarDay>();
+            for (var i = 1; i < 29; i++)
+            {
+                days.Add(i, new SVCalendarDay()
+                {
+                    DayOfMonth = i,
+                });
+            }
+
+            days[1].Birthday = People.Krobus;
+            days[3].Birthday = People.Linus;
+            days[7].Birthday = People.Caroline;
+            days[10].Birthday = People.Sebastian;
+            days[14].Birthday = People.Harvey;
+            days[17].Birthday = People.Wizard;
+            days[20].Birthday = People.Evelyn;
+            days[23].Birthday = People.Leah;
+            days[26].Birthday = People.Clint;
+
+            days[8].Festival = new SVWikiLink("Festival of Ice", "https://stardewvalleywiki.com/Festival_of_Ice");
+            days[15].NightMarket = new SVWikiLink("Night Market", "https://stardewvalleywiki.com/Night_Market");
+            days[16].NightMarket = new SVWikiLink("Night Market", "https://stardewvalleywiki.com/Night_Market");
+            days[17].NightMarket = new SVWikiLink("Night Market", "https://stardewvalleywiki.com/Night_Market");
+            days[25].Festival = new SVWikiLink("Feast of the Winter Star", "https://stardewvalleywiki.com/Feast_of_the_Winter_Star");
+
+            days[15].Notes.Add("Submarine Ride has unique fish");
+            days[16].Notes.Add("Submarine Ride has unique fish");
+            days[17].Notes.Add("Submarine Ride has unique fish");
+
+            CalendarDaysForWinter = days.Select(x => x.Value).ToList();
         }
     }
 }

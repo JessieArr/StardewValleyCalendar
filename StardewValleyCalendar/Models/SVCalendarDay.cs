@@ -10,6 +10,7 @@ namespace StardewValleyCalendar.Models
         public int DayOfMonth { get; set; }
         public SVPerson Birthday { get; set; }
         public SVWikiLink Festival { get; set; }
+        public SVWikiLink NightMarket { get; set; }
         public List<string> Notes { get; set; } = new List<string>();
 
         public List<SVCrop> FirstDayToPlant { get; set; } = new List<SVCrop>();

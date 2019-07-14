@@ -58,7 +58,7 @@ body {
     border: 1px solid black;
     width: 14%;
     display: inline-block;
-    height: 120px;
+    height: 130px;
     float: left;
 }
 
@@ -90,4 +90,8 @@ body {
 
 .closes {
     color: darkred;
+}
+
+.inline-block{
+    display: inline-block;
 }

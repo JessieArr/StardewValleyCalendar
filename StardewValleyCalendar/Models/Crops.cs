@@ -7,6 +7,30 @@ namespace StardewValleyCalendar.Models
 {
     public static class Crops
     {
+        public static SVCrop Amaranth = new SVCrop()
+        {
+            Link = new SVWikiLink("Amaranth", "https://stardewvalleywiki.com/Amaranth"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 70,
+            SellPrice = 150,
+            DaysToGrow = new CropSpeedGrid(7),
+        };
+        public static SVCrop Artichoke = new SVCrop()
+        {
+            Link = new SVWikiLink("Artichoke", "https://stardewvalleywiki.com/Artichoke"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 30,
+            SellPrice = 160,
+            DaysToGrow = new CropSpeedGrid(8),
+        };
+        public static SVCrop Beet = new SVCrop()
+        {
+            Link = new SVWikiLink("Beet", "https://stardewvalleywiki.com/Beet"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 20,
+            SellPrice = 100,
+            DaysToGrow = new CropSpeedGrid(6),
+        };
         public static SVCrop BlueJazz = new SVCrop()
         {
             Link = new SVWikiLink("Blue Jazz", "https://stardewvalleywiki.com/Blue_Jazz"),
@@ -14,6 +38,14 @@ namespace StardewValleyCalendar.Models
             SeedPrice = 30,
             SellPrice = 50,
             DaysToGrow = new CropSpeedGrid(7),
+        };
+        public static SVCrop BokChoy = new SVCrop()
+        {
+            Link = new SVWikiLink("Bok Choy", "https://stardewvalleywiki.com/Bok_Choy"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 50,
+            SellPrice = 80,
+            DaysToGrow = new CropSpeedGrid(4),
         };
         public static SVCrop Cauliflower = new SVCrop()
         {
@@ -34,6 +66,45 @@ namespace StardewValleyCalendar.Models
             MultipleHarvests = true,
             DaysToReGrow = 2,
         };
+        public static SVCrop Corn = new SVCrop()
+        {
+            Link = new SVWikiLink("Corn", "https://stardewvalleywiki.com/Corn"),
+            Seasons = new List<string>() { SeasonNames.Summer, SeasonNames.Fall },
+            SeedPrice = 150,
+            SellPrice = 50,
+            DaysToGrow = new CropSpeedGrid(14),
+            MultipleHarvests = true,
+            DaysToReGrow = 4,
+        };
+        public static SVCrop Cranberries = new SVCrop()
+        {
+            Link = new SVWikiLink("Cranberries", "https://stardewvalleywiki.com/Cranberries"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 240,
+            SellPrice = 75,
+            DaysToGrow = new CropSpeedGrid(7),
+            MultipleHarvests = true,
+            NumberPerHarvest = 2,
+            DaysToReGrow = 5,
+        };
+        public static SVCrop Eggplant = new SVCrop()
+        {
+            Link = new SVWikiLink("Eggplant", "https://stardewvalleywiki.com/Eggplant"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 20,
+            SellPrice = 60,
+            DaysToGrow = new CropSpeedGrid(5),
+            MultipleHarvests = true,
+            DaysToReGrow = 5,
+        };
+        public static SVCrop FairyRose = new SVCrop()
+        {
+            Link = new SVWikiLink("Fairy Rose", "https://stardewvalleywiki.com/Fairy_Rose"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 200,
+            SellPrice = 290,
+            DaysToGrow = new CropSpeedGrid(12),
+        };
         public static SVCrop Garlic = new SVCrop()
         {
             Link = new SVWikiLink("Garlic", "https://stardewvalleywiki.com/Garlic"),
@@ -41,6 +112,16 @@ namespace StardewValleyCalendar.Models
             SeedPrice = 40,
             SellPrice = 60,
             DaysToGrow = new CropSpeedGrid(4),
+        };
+        public static SVCrop Grape = new SVCrop()
+        {
+            Link = new SVWikiLink("Grape", "https://stardewvalleywiki.com/Grape"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 60,
+            SellPrice = 60,
+            DaysToGrow = new CropSpeedGrid(5),
+            MultipleHarvests = true,
+            DaysToReGrow = 3,
         };
         public static SVCrop GreenBean = new SVCrop()
         {
@@ -76,6 +157,14 @@ namespace StardewValleyCalendar.Models
             SellPrice = 80,
             DaysToGrow = new CropSpeedGrid(6),
         };
+        public static SVCrop Pumpkin = new SVCrop()
+        {
+            Link = new SVWikiLink("Pumpkin", "https://stardewvalleywiki.com/Pumpkin"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 100,
+            SellPrice = 320,
+            DaysToGrow = new CropSpeedGrid(13),
+        };
         public static SVCrop Rhubarb = new SVCrop()
         {
             Link = new SVWikiLink("Rhubarb", "https://stardewvalleywiki.com/Rhubarb"),
@@ -94,6 +183,22 @@ namespace StardewValleyCalendar.Models
             MultipleHarvests = true,
             DaysToReGrow = 4,
         };
+        public static SVCrop Sunflower = new SVCrop()
+        {
+            Link = new SVWikiLink("Sunflower", "https://stardewvalleywiki.com/Sunflower"),
+            Seasons = new List<string>() { SeasonNames.Summer, SeasonNames.Fall },
+            SeedPrice = 200,
+            SellPrice = 80,
+            DaysToGrow = new CropSpeedGrid(8),
+        };
+        public static SVCrop SweetGemBerry = new SVCrop()
+        {
+            Link = new SVWikiLink("Sweet Gem Berry", "https://stardewvalleywiki.com/Sweet_Gem_Berry"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 1000,
+            SellPrice = 3000,
+            DaysToGrow = new CropSpeedGrid(24),
+        };
         public static SVCrop Tulip = new SVCrop()
         {
             Link = new SVWikiLink("Tulip", "https://stardewvalleywiki.com/Tulip"),
@@ -101,6 +206,22 @@ namespace StardewValleyCalendar.Models
             SeedPrice = 20,
             SellPrice = 30,
             DaysToGrow = new CropSpeedGrid(6),
+        };
+        public static SVCrop Wheat = new SVCrop()
+        {
+            Link = new SVWikiLink("Wheat", "https://stardewvalleywiki.com/Wheat"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 10,
+            SellPrice = 25,
+            DaysToGrow = new CropSpeedGrid(4),
+        };
+        public static SVCrop Yam = new SVCrop()
+        {
+            Link = new SVWikiLink("Yam", "https://stardewvalleywiki.com/Yam"),
+            Seasons = new List<string>() { SeasonNames.Fall },
+            SeedPrice = 60,
+            SellPrice = 160,
+            DaysToGrow = new CropSpeedGrid(10),
         };
 
         public static List<SVCrop> GetSpringCrops()
@@ -132,6 +253,18 @@ namespace StardewValleyCalendar.Models
         {
             return new List<SVCrop>()
             {
+                Amaranth,
+                Artichoke,
+                Beet,
+                BokChoy,
+                Cranberries,
+                Eggplant,
+                FairyRose,
+                Grape,
+                Pumpkin,
+                Sunflower,
+                SweetGemBerry,
+                Yam,
             };
         }
     }

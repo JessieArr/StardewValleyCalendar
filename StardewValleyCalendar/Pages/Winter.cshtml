@@ -1,7 +1,8 @@
 ﻿@page
-@model StardewValleyCalendar.Pages.SpringModel
+@model StardewValleyCalendar.Pages.WinterModel
 @{
-    ViewData["Title"] = "Spring";
+    ViewData["Title"] = "Winter";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -59,28 +60,12 @@
         </div>
         <div class="row">
             <div class="col-md-12 calendar calendar-background">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h3 class="calendar-title pull-left">Spring</h3>
-                        <a asp-page="Summer"><h3 class="calendar-title pull-left">Summer</h3></a>
-                        <a asp-page="Fall"><h3 class="calendar-title pull-left">Fall</h3></a>
-                        <a asp-page="Winter"><h3 class="calendar-title pull-left">Winter</h3></a>
-                    </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-2"><h4 class="pull-right">Crop Growth Speed:</h4></div>
-                    <div class="col-md-1">
-                        <select id="speedDropdown" class="pull-right form-control">
-                            <option>0%</option>
-                            <option>10%</option>
-                            <option>20%</option>
-                            <option>25%</option>
-                            <option>35%</option>
-                        </select>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-info pull-right" onclick="filterGrowSpeed();">Filter</button>
-                    </div>
-                </div>                @foreach (var day in Model.Days)
+                <a asp-page="Spring"><h3 class="pull-left calendar-title">Spring</h3></a>
+                <a asp-page="Summer"><h3 class="pull-left calendar-title">Summer</h3></a>
+                <a asp-page="Fall"><h3 class="pull-left calendar-title">Fall</h3></a>
+                <h3 class="pull-left calendar-title">Winter</h3>
+                <div class="clearfix"></div>
+                @foreach (var day in Model.Days)
                 {
                 <div class="calendar-day">
                     <h3 class="pull-right small-margin">@day</h3>
@@ -88,6 +73,13 @@
                     {
                         var dayInfo = Model.CalendarDays.First(x => x.DayOfMonth == day);
 
+                        if (dayInfo.NightMarket != null)
+                        {
+                            <div>
+                                <img src="~/images/Iridium_Quality.png" class="small-margin" />
+                                <a href="@dayInfo.NightMarket.URL" target="_blank">@dayInfo.NightMarket.Text</a>
+                            </div>
+                        }
                         if (dayInfo.Festival != null)
                         {
                             <div>
@@ -111,7 +103,7 @@
                             }
                         }
 
-                        if (dayInfo.FirstDayToPlant.Any() && (Request.Query["speed"] == "0%" || String.IsNullOrEmpty(Request.Query["speed"])))
+                        if (dayInfo.FirstDayToPlant.Any())
                         {
                             var crops = dayInfo.FirstDayToPlant.Select(x => x.Link.Text);
                             <p class="no-margin text-success"
@@ -120,7 +112,7 @@
                             </p>
                         }
 
-                        if (dayInfo.FirstDayToPlantTen.Any() && Request.Query["speed"] == "10%")
+                        if (dayInfo.FirstDayToPlantTen.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTen.Select(x => x.Link.Text);
                             <p class="no-margin text-success"
@@ -129,7 +121,7 @@
                             </p>
                         }
 
-                        if (dayInfo.FirstDayToPlantTwenty.Any() && Request.Query["speed"] == "20%")
+                        if (dayInfo.FirstDayToPlantTwenty.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTwenty.Select(x => x.Link.Text);
                             <p class="no-margin text-success"
@@ -138,7 +130,7 @@
                             </p>
                         }
 
-                        if (dayInfo.FirstDayToPlantTwentyFive.Any() && Request.Query["speed"] == "25%")
+                        if (dayInfo.FirstDayToPlantTwentyFive.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantTwentyFive.Select(x => x.Link.Text);
                             <p class="no-margin text-success"
@@ -147,7 +139,7 @@
                             </p>
                         }
 
-                        if (dayInfo.FirstDayToPlantThirtyFive.Any() && Request.Query["speed"] == "35%")
+                        if (dayInfo.FirstDayToPlantThirtyFive.Any())
                         {
                             var crops = dayInfo.FirstDayToPlantThirtyFive.Select(x => x.Link.Text);
                             <p class="no-margin text-success"
@@ -156,7 +148,7 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlant.Any() && (Request.Query["speed"] == "0%" || String.IsNullOrEmpty(Request.Query["speed"])))
+                        if (dayInfo.LastDayToPlant.Any())
                         {
                             var crops = dayInfo.LastDayToPlant.Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
@@ -165,7 +157,7 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTen.Any() && Request.Query["speed"] == "10%")
+                        if (dayInfo.LastDayToPlantTen.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTen.Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
@@ -174,7 +166,7 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTwenty.Any() && Request.Query["speed"] == "20%")
+                        if (dayInfo.LastDayToPlantTwenty.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTwenty.Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
@@ -183,7 +175,7 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTwentyFive.Any() && Request.Query["speed"] == "25%")
+                        if (dayInfo.LastDayToPlantTwentyFive.Any())
                         {
                             var crops = dayInfo.LastDayToPlantTwentyFive.Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
@@ -192,7 +184,7 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantThirtyFive.Any() && Request.Query["speed"] == "35%")
+                        if (dayInfo.LastDayToPlantThirtyFive.Any())
                         {
                             var crops = dayInfo.LastDayToPlantThirtyFive.Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
@@ -240,55 +232,6 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10 calendar-background">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Crop</th>
-                    <th>Seed Price</th>
-                    <th>Sell Price</th>
-                    <th>Regrows?</th>
-                    <th>Harvests:</th>
-                    <th>10%:</th>
-                    <th>20%:</th>
-                    <th>25%:</th>
-                    <th>35%:</th>
-                    <th>Gold per day:</th>
-                    <th>10%:</th>
-                    <th>20%:</th>
-                    <th>25%:</th>
-                    <th>35%:</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var crop in Model.CropsInSeason)
-                {
-                    <tr>
-                        <td>@crop.Link.Text</td>
-                        <td>@crop.SeedPrice</td>
-                        <td>@crop.SellPrice</td>
-                        @if (crop.MultipleHarvests)
-                        {
-                            <td>Yes</td>
-
-                        }
-                        else
-                        {
-                            <td>No</td>
-                        }
-                        <td>@crop.CalculatedValues.MaxHarvests.Normal</td>
-                        <td>@crop.CalculatedValues.MaxHarvests.SpeedGroOrAgriculturalist</td>
-                        <td>@crop.CalculatedValues.MaxHarvests.SpeedGroAndAgriculturalist</td>
-                        <td>@crop.CalculatedValues.MaxHarvests.Deluxe</td>
-                        <td>@crop.CalculatedValues.MaxHarvests.DeluxeAndAgriculturalist</td>
-                        <td>@Math.Round(crop.CalculatedValues.GoldPerDay.Normal, 2)</td>
-                        <td>@Math.Round(crop.CalculatedValues.GoldPerDay.SpeedGroOrAgriculturalist, 2)</td>
-                        <td>@Math.Round(crop.CalculatedValues.GoldPerDay.SpeedGroAndAgriculturalist, 2)</td>
-                        <td>@Math.Round(crop.CalculatedValues.GoldPerDay.Deluxe, 2)</td>
-                        <td>@Math.Round(crop.CalculatedValues.GoldPerDay.DeluxeAndAgriculturalist, 2)</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
     <div class="col-md-1"></div>
 

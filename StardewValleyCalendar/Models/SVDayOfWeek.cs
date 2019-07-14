@@ -8,9 +8,10 @@ namespace StardewValleyCalendar.Models
     public class SVDayOfWeek
     {
         public string Name { get; set; }
-        public List<SVWikiLink> ClosedStores { get; set; }
-        public List<SVWikiLink> ClosedStoresOnSunnyDays { get; set; }
+        public List<SVWikiLink> ClosedStores { get; set; } = new List<SVWikiLink>();
+        public List<SVWikiLink> ClosedStoresAfterCommunityCenter { get; set; } = new List<SVWikiLink>();
+        public List<SVWikiLink> ClosedStoresOnSunnyDays { get; set; } = new List<SVWikiLink>();
         public bool TravelingCartOpen { get; set; }
-        public List<Tuple<SVWikiLink, string>> EarlyStoreClosures { get; set; }
+        public List<Tuple<SVWikiLink, string>> EarlyStoreClosures { get; set; } = new List<Tuple<SVWikiLink, string>>();
     }
 }
