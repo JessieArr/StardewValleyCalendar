@@ -19,6 +19,7 @@ namespace StardewValleyCalendar.Pages
         public List<SVCalendarDay> CalendarDays;
         public SVWikiLink TravelingCart;
         public SVBundle SeasonalForagingBundle;
+        public SVBundle SeasonalCropsBundle;
 
         public List<SVCrop> CropsInSeason;
         public List<SeasonReminder> Reminders;
@@ -35,6 +36,7 @@ namespace StardewValleyCalendar.Pages
             CalendarDays = _CalendarService.GetCalendarDaysForSummer();
             CropsInSeason = Crops.GetSummerCrops();
             SeasonalForagingBundle = Bundles.SummerForagingBundle;
+            SeasonalCropsBundle = Bundles.SummerCropsBundle;
             Reminders = _CalendarService.GetRemindersForSummer();
         }
 

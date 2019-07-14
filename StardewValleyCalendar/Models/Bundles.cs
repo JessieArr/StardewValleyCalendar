@@ -28,6 +28,18 @@ namespace StardewValleyCalendar.Models
             Link = new SVWikiLink("Exotic Foraging Bundle", "https://stardewvalleywiki.com/Bundles#Exotic_Foraging_Bundle")
         };
 
+        public static SVBundle SpringCropsBundle = new SVBundle()
+        {
+            Link = new SVWikiLink("Spring Crops Bundle", "https://stardewvalleywiki.com/Bundles#Spring_Crops_Bundle")
+        };
+        public static SVBundle SummerCropsBundle = new SVBundle()
+        {
+            Link = new SVWikiLink("Summer Crops Bundle", "https://stardewvalleywiki.com/Bundles#Summer_Crops_Bundle")
+        };
+        public static SVBundle FallCropsBundle = new SVBundle()
+        {
+            Link = new SVWikiLink("Fall Crops Bundle", "https://stardewvalleywiki.com/Bundles#Fall_Crops_Bundle")
+        };
         public static SVBundle QualityCropsBundle = new SVBundle()
         {
             Link = new SVWikiLink("Quality Crops Bundle", "https://stardewvalleywiki.com/Bundles#Quality_Crops_Bundle")
