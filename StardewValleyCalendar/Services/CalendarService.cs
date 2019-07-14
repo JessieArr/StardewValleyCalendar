@@ -101,7 +101,7 @@ namespace StardewValleyCalendar.Services
                 },
                 EarlyStoreClosures = new List<Tuple<SVWikiLink, string>>()
                 {
-                    new Tuple<SVWikiLink, string>(Shops.CarpenterShop, "4:00pm")
+                    new Tuple<SVWikiLink, string>(Shops.Blacksmith, "4:00pm")
                 },
                 TravelingCartOpen = true,
             });

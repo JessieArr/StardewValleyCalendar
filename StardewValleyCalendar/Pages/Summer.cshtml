@@ -295,6 +295,10 @@
     <div class="col-md-1"></div>
 
 </div>
-
-
-
+<script>
+    function filterGrowSpeed() {
+        var speedDropdown = document.getElementById('speedDropdown').value;
+        var pathWithoutQueryString = window.location.href.substr(0, window.location.href.indexOf('?'));
+        window.location.href = pathWithoutQueryString + "?speed=" + speedDropdown;
+    }
+</script>
