@@ -156,45 +156,54 @@
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlant.Any() && (Request.Query["speed"] == "0%" || String.IsNullOrEmpty(Request.Query["speed"])))
+                        if (dayInfo.LastDayToPlant.Any(x => !x.Seasons.Any(y => y == Model.NextSeason)) && (Request.Query["speed"] == "0%" || String.IsNullOrEmpty(Request.Query["speed"])))
                         {
-                            var crops = dayInfo.LastDayToPlant.Select(x => x.Link.Text);
+                            var crops = dayInfo.LastDayToPlant.Where(
+                                x => !x.Seasons.Any(y => y == Model.NextSeason))
+                                .Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
                                title="Last chance for a harvest if not using Speed Gro OR Agriculturalist">
                                 0%: @String.Join(", ", crops)
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTen.Any() && Request.Query["speed"] == "10%")
+                        if (dayInfo.LastDayToPlantTen.Any(x => !x.Seasons.Any(y => y == Model.NextSeason)) && Request.Query["speed"] == "10%")
                         {
-                            var crops = dayInfo.LastDayToPlantTen.Select(x => x.Link.Text);
+                            var crops = dayInfo.LastDayToPlantTen.Where(
+                                x => !x.Seasons.Any(y => y == Model.NextSeason))
+                                .Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
                                title="Last chance for a harvest if using Speed Gro OR Agriculturalist">
                                 10%: @String.Join(", ", crops)
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTwenty.Any() && Request.Query["speed"] == "20%")
+                        if (dayInfo.LastDayToPlantTwenty.Any(x => !x.Seasons.Any(y => y == Model.NextSeason)) && Request.Query["speed"] == "20%")
                         {
-                            var crops = dayInfo.LastDayToPlantTwenty.Select(x => x.Link.Text);
+                            var crops = dayInfo.LastDayToPlantTwenty.Where(
+                                x => !x.Seasons.Any(y => y == Model.NextSeason))
+                                .Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
                                title="Last chance for a harvest if using Speed Gro and Agriculturalist">
                                 20%: @String.Join(", ", crops)
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantTwentyFive.Any() && Request.Query["speed"] == "25%")
+                        if (dayInfo.LastDayToPlantTwentyFive.Any(x => !x.Seasons.Any(y => y == Model.NextSeason)) && Request.Query["speed"] == "25%")
                         {
-                            var crops = dayInfo.LastDayToPlantTwentyFive.Select(x => x.Link.Text);
+                            var crops = dayInfo.LastDayToPlantTwentyFive.Where(
+                                x => !x.Seasons.Any(y => y == Model.NextSeason))
+                                .Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
                                title="Last chance for a harvest if using Deluxe Speed Gro">
                                 25%: @String.Join(", ", crops)
                             </p>
                         }
 
-                        if (dayInfo.LastDayToPlantThirtyFive.Any() && Request.Query["speed"] == "35%")
+                        if (dayInfo.LastDayToPlantThirtyFive.Any(x => !x.Seasons.Any(y => y == Model.NextSeason)) && Request.Query["speed"] == "35%")
                         {
-                            var crops = dayInfo.LastDayToPlantThirtyFive.Select(x => x.Link.Text);
+                            var crops = dayInfo.LastDayToPlantThirtyFive
+                                .Where(x => !x.Seasons.Any(y => y == Model.NextSeason)).Select(x => x.Link.Text);
                             <p class="no-margin text-danger"
                                title="Last chance for a harvest if using Deluxe Speed Gro and Agriculturalist">
                                 35%: @String.Join(", ", crops)

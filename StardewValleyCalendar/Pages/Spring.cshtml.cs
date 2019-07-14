@@ -23,6 +23,8 @@ namespace StardewValleyCalendar.Pages
         public List<SVCrop> CropsInSeason;
         public List<SeasonReminder> Reminders;
 
+        public string NextSeason = SeasonNames.Summer;
+
         public SpringModel()
         {
             _CalendarService = new CalendarService();

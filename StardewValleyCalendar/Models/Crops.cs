@@ -336,6 +336,7 @@ namespace StardewValleyCalendar.Models
             return new List<SVCrop>()
             {
                 Blueberry,
+                CoffeeBean,
                 Corn,
                 Hops,
                 HotPepper,
@@ -358,6 +359,7 @@ namespace StardewValleyCalendar.Models
                 Artichoke,
                 Beet,
                 BokChoy,
+                Corn,
                 Cranberries,
                 Eggplant,
                 FairyRose,
@@ -365,6 +367,7 @@ namespace StardewValleyCalendar.Models
                 Pumpkin,
                 Sunflower,
                 SweetGemBerry,
+                Wheat,
                 Yam,
             };
         }
