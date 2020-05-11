@@ -368,6 +368,7 @@ namespace StardewValleyCalendar.Services
             days[12].Notes.Add("Extra forageables at the beach");
             days[13].Notes.Add("Extra forageables at the beach");
             days[14].Notes.Add("Extra forageables at the beach");
+            days[18].Notes.Add("Robin's doctor appointment - Carpenter Shop Closed");
 
             var crops = Crops.GetSummerCrops();
 

@@ -293,7 +293,7 @@
                 @foreach (var crop in Model.CropsInSeason)
                 {
                     <tr>
-                        <td>@crop.Link.Text</td>
+                        <td><a href="@crop.Link.URL" target="_blank">@crop.Link.Text</a></td>
                         <td>@crop.SeedPrice</td>
                         <td>@crop.SellPrice</td>
                         @if (crop.MultipleHarvests)
